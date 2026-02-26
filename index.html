@@ -34,6 +34,48 @@
             margin: 0 auto;
             padding: 0 5%;
         }
+        /* สไตล์สำหรับ Contact Pills ใน Footer */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* ให้มันลงแถวใหม่ได้ถ้าจอมือถือแคบ */
+            gap: 1rem;
+        }
+
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-pill:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
+            background-color: rgba(56, 189, 248, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .contact-pill i {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        /* ปรับแต่งสำหรับมือถือให้ดูไม่อึดอัด */
+        @media (max-width: 600px) {
+            .contact-pill {
+                width: 100%; /* บนมือถือให้ยาวเต็มจอเลย จะได้กดง่ายๆ */
+                justify-content: center;
+            }
+        }
 
         /* Navbar & Responsive Menu */
         nav {
@@ -333,13 +375,26 @@
     <footer id="contact">
         <div class="container">
             <h2>Let's build something together.</h2>
-            <p style="color: var(--text-secondary); margin-top: 10px;">Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+            <p style="color: var(--text-secondary); margin: 10px 0 30px;">Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+            
             <div class="footer-links">
-                <a href="mailto:king.supaka@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a><br>
-                <a href="https://github.com/suphachaiSUP" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="tel:0967816499" title="Phone"><i class="fa-solid fa-phone"></i></a>
+                <a href="mailto:king.supaka@gmail.com" class="contact-pill">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>king.supaka@gmail.com</span>
+                </a>
+                
+                <a href="https://github.com/suphachaiSUP" target="_blank" class="contact-pill">
+                    <i class="fa-brands fa-github"></i>
+                    <span>suphachaiSUP</span>
+                </a>
+                
+                <a href="tel:0967816499" class="contact-pill">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>096-781-6499</span>
+                </a>
             </div>
-            <p style="color: #52525b; font-size: 0.85rem; margin-top: 2rem;">© 2026 Supachai Supaka. All rights reserved.</p>
+            
+            <p style="color: #52525b; font-size: 0.85rem; margin-top: 3rem;">© 2026 Supachai Supaka. All rights reserved.</p>
         </div>
     </footer>
 
