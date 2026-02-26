@@ -19,6 +19,9 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        /* ทำให้เวลาคลิกเมนู แล้วเลื่อนลงมาแบบนุ่มนวล */
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-main);
@@ -32,17 +35,53 @@
             padding: 0 5%;
         }
 
-        /* Nav */
+        /* Navbar & Responsive Menu */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1.5rem 5%; max-width: 1200px; margin: 0 auto;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 1.5rem 5%; 
+            max-width: 1200px; 
+            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            background-color: rgba(9, 9, 11, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        
+        .logo { font-weight: 700; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
         .logo-dot { width: 10px; height: 10px; background-color: var(--accent-blue); border-radius: 50%; box-shadow: 0 0 10px var(--accent-blue); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* ปุ่มแฮมเบอร์เกอร์ (ซ่อนไว้ก่อนบนจอคอม) */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
 
         /* Hero Section */
         .hero-container {
             display: flex; align-items: center; gap: 4rem; margin: 4rem 0 6rem;
+            scroll-margin-top: 100px; /* เว้นระยะด้านบนตอน Scroll มาถึง */
         }
         .hero-image-wrapper { flex: 0 0 320px; position: relative; }
         .hero-image-wrapper::before {
@@ -79,6 +118,7 @@
         .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
 
         /* Sections */
+        section { scroll-margin-top: 100px; margin-bottom: 4rem; }
         .section-title {
             font-size: 2rem; margin-bottom: 2rem; color: #fff;
             display: flex; align-items: center; gap: 12px;
@@ -86,7 +126,7 @@
         .section-title i { color: var(--accent-blue); }
 
         /* Skills */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4rem; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
         .skill-tag {
             background-color: var(--bg-card); color: var(--text-primary);
             border: 1px solid var(--border-color); padding: 10px 20px;
@@ -127,11 +167,42 @@
             border-radius: 4px; color: #d4d4d8;
         }
 
+        /* Footer / Contact */
+        footer {
+            text-align: center; padding: 4rem 0; border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+        .footer-links a { color: var(--text-secondary); font-size: 1.5rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent-blue); }
+
+        /* Mobile Responsive */
         @media (max-width: 800px) {
-            .hero-container { flex-direction: column; text-align: center; gap: 2rem; }
+            .hamburger { display: block; } /* แสดงปุ่มแฮมเบอร์เกอร์บนมือถือ */
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+                gap: 1.5rem;
+                display: none; /* ซ่อนเมนูไว้ก่อน */
+            }
+
+            .nav-links.active {
+                display: flex; /* แสดงเมนูเมื่อถูกคลิก (ใช้ JS ควบคุม) */
+            }
+
+            .hero-container { flex-direction: column; text-align: center; gap: 2rem; margin: 2rem 0; }
             .hero-image-wrapper { width: 250px; margin: 0 auto; }
             h1 { font-size: 2.8rem; }
             .btn-group { justify-content: center; }
+            
             .project-showcase { flex-direction: column; align-items: center; }
             .img-desktop { width: 100%; }
             .img-mobile { width: 40%; margin-top: -20px; z-index: 2; border: 4px solid #121214; }
@@ -142,12 +213,23 @@
 
     <nav>
         <div class="logo"><div class="logo-dot"></div> Supachai.S</div>
+        
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <div class="container">
-        <div class="hero-container">
+        <section id="about" class="hero-container">
             <div class="hero-image-wrapper">
-                <img src="images/Profile.png" alt="Supachai Supaka" class="hero-image" onerror="this.src='https://github.com/suphachaiSUP.png'">
+                <img src="profile.jpg" alt="Supachai Supaka" class="hero-image" onerror="this.src='https://github.com/suphachaiSUP.png'">
             </div>
             <div class="hero-content">
                 <div class="badge">Full-Stack Developer</div>
@@ -161,89 +243,122 @@
                     <a href="resume.pdf" target="_blank" class="btn btn-secondary" title="Download Resume"><i class="fa-solid fa-file-pdf"></i> Resume</a>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Arsenal</h2>
-        <div class="skills-grid">
-            <span class="skill-tag">JavaScript / TypeScript</span>
-            <span class="skill-tag">PHP (Laravel)</span>
-            <span class="skill-tag">Next.js / React</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">MySQL / PostgreSQL</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Supabase</span>
-            <span class="skill-tag">Git / GitHub</span>
-        </div>
+        <section id="skills">
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Arsenal</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">JavaScript / TypeScript</span>
+                <span class="skill-tag">PHP (Laravel)</span>
+                <span class="skill-tag">Next.js / React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">MySQL / PostgreSQL</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Supabase</span>
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Postman / Swagger</span>
+            </div>
+        </section>
 
-        <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Featured Work</h2>
+        <section id="experience">
+            <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Experience & Projects</h2>
 
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    <h3>EV Charging Station Location Info</h3>
-                    <div class="card-subtitle">Full-stack Developer (Undergraduate Thesis)</div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>EV Charging Station Location Info</h3>
+                        <div class="card-subtitle">Full-stack Developer (Undergraduate Thesis)</div>
+                    </div>
+                </div>
+                <ul>
+                    <li>Developed a full-stack EV charging station platform with role-based access control.</li>
+                    <li>Integrated Google Maps API for real-time location tracking and responsive search filtering.</li>
+                    <li>Designed relational database schemas and built robust RESTful APIs.</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Google Maps API</span>
+                </div>
+                
+                <div class="project-showcase">
+                    <img src="ev-de.jpg" alt="EV Desktop View" class="img-desktop" title="Desktop Version" onerror="this.style.display='none'">
+                    <img src="ev-mo.jpg" alt="EV Mobile View" class="img-mobile" title="Mobile Version" onerror="this.style.display='none'">
                 </div>
             </div>
-            <ul>
-                <li>Developed a full-stack EV charging station platform with role-based access control.</li>
-                <li>Integrated Google Maps API for real-time location tracking and responsive search filtering.</li>
-                <li>Designed relational database schemas and built robust RESTful APIs.</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">Laravel</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">Google Maps API</span>
-                <span class="tech-tag">Bootstrap/Tailwind</span>
-            </div>
-            
-            <div class="project-showcase">
-                <img src="images/EvDe.png" alt="EV Desktop View" class="img-desktop" title="Desktop Version">
-                <img src="images/EvMo.png" alt="EV Mobile View" class="img-mobile" title="Mobile Version">
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    <h3>Thai Cart - Embedded Checkout SaaS</h3>
-                    <div class="card-subtitle">Full-stack Developer</div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>Thai Cart - Embedded Checkout SaaS</h3>
+                        <div class="card-subtitle">Full-stack Developer</div>
+                    </div>
+                    <div class="card-date">Jun 2025 - Oct 2025</div>
                 </div>
-                <div class="card-date">Jun 2025 - Oct 2025</div>
-            </div>
-            <ul>
-                <li>Developed an embedded checkout platform using Next.js and TypeScript.</li>
-                <li>Created a merchant dashboard and JavaScript widget for external website integration.</li>
-                <li>Designed scalable system architecture and built REST APIs for order workflows.</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">Next.js</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Supabase</span>
-                <span class="tech-tag">Prisma</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    <h3>Software Dev Intern (Backend)</h3>
-                    <div class="card-subtitle">BANGKOK SOLUTION CO.,LTD.</div>
+                <ul>
+                    <li>Developed an embedded checkout platform using Next.js and TypeScript.</li>
+                    <li>Created a merchant dashboard and JavaScript widget for external website integration.</li>
+                    <li>Designed scalable system architecture and built REST APIs for order workflows.</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Supabase</span>
+                    <span class="tech-tag">Prisma</span>
                 </div>
-                <div class="card-date">Nov 2025 - Present</div>
             </div>
-            <ul>
-                <li>Developed backend APIs for Hotel Contract Management System and MBA Platform.</li>
-                <li>Implemented media upload, Excel file processing, and many-to-many database relationships.</li>
-                <li>Optimized database queries and pagination for improved system performance.</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">PHP (Laravel)</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">Scramble / Swagger</span>
-            </div>
-        </div>
 
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>Software Dev Intern (Backend)</h3>
+                        <div class="card-subtitle">BANGKOK SOLUTION CO.,LTD.</div>
+                    </div>
+                    <div class="card-date">Nov 2025 - Present</div>
+                </div>
+                <ul>
+                    <li>Developed backend APIs for Hotel Contract Management System and MBA Platform.</li>
+                    <li>Implemented media upload, Excel file processing, and many-to-many database relationships.</li>
+                    <li>Optimized database queries and pagination for improved system performance.</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP (Laravel)</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Scramble / Swagger</span>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <footer id="contact">
+        <div class="container">
+            <h2>Let's build something together.</h2>
+            <p style="color: var(--text-secondary); margin-top: 10px;">Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+            <div class="footer-links">
+                <a href="mailto:king.supaka@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/suphachaiSUP" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="tel:0967816499" title="Phone"><i class="fa-solid fa-phone"></i></a>
+            </div>
+            <p style="color: #52525b; font-size: 0.85rem; margin-top: 2rem;">© 2026 Supachai Supaka. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = navLinks.querySelectorAll('a');
+
+        // เมื่อกดปุ่มแฮมเบอร์เกอร์ ให้เปิด/ปิดเมนู
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // เมื่อกดเลือกลิงก์ใดลิงก์หนึ่ง ให้ปิดเมนูอัตโนมัติ (สำหรับมือถือ)
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
