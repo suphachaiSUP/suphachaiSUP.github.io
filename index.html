@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-main: #09090b; /* สีดำเข้มจัดแบบขลังๆ */
-            --bg-card: #121214; /* สีเทาดำสำหรับการ์ด */
+            --bg-main: #09090b;
+            --bg-card: #121214;
             --text-primary: #f8fafc;
             --text-secondary: #a1a1aa;
             --accent-blue: #38bdf8;
@@ -17,387 +17,232 @@
             --border-color: #27272a;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-main);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* แถบเมนูด้านบน */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-dot {
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* ส่วน Hero Section (ส่วนแรกสุด) */
-        .hero-container {
+        .container {
             max-width: 1100px;
-            margin: 4rem auto;
+            margin: 0 auto;
             padding: 0 5%;
-            display: flex;
-            align-items: center;
-            gap: 4rem;
         }
 
-        /* รูปภาพด้านซ้าย */
-        .hero-image-wrapper {
-            flex: 0 0 320px;
-            position: relative;
+        /* Nav */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; max-width: 1200px; margin: 0 auto;
         }
+        .logo { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .logo-dot { width: 10px; height: 10px; background-color: var(--accent-blue); border-radius: 50%; box-shadow: 0 0 10px var(--accent-blue); }
 
-        /* แสงโกลว์ด้านหลังรูป */
+        /* Hero Section */
+        .hero-container {
+            display: flex; align-items: center; gap: 4rem; margin: 4rem 0 6rem;
+        }
+        .hero-image-wrapper { flex: 0 0 320px; position: relative; }
         .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
             background: linear-gradient(to right, rgba(56, 189, 248, 0.5), rgba(129, 140, 248, 0.5));
-            border-radius: 24px;
-            filter: blur(30px);
-            z-index: -1;
-            opacity: 0.7;
+            border-radius: 24px; filter: blur(30px); z-index: -1; opacity: 0.7;
         }
-
         .hero-image {
-            width: 100%;
-            height: 400px; /* ปรับให้เป็นแนวตั้งสี่เหลี่ยมผืนผ้าแบบในรูป */
-            object-fit: cover;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%; height: 400px; object-fit: cover;
+            border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* เนื้อหาด้านขวา */
-        .hero-content {
-            flex: 1;
-        }
-
+        .hero-content { flex: 1; }
         .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--accent-blue);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+            display: inline-block; padding: 6px 16px; background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem;
         }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
+        h1 { font-size: 4rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
         .highlight-text {
             background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        .bio { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; }
 
-        .bio {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        /* การ์ดการศึกษา */
-        .edu-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background-color: var(--bg-card);
-            padding: 1.2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .edu-icon {
-            background-color: rgba(255, 255, 255, 0.05);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-        }
-
-        .edu-info h4 {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .edu-info p {
-            margin: 0;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
-        /* ปุ่มกด */
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-        }
-
+        /* Buttons */
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
         .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            cursor: pointer;
+            padding: 12px 24px; border-radius: 8px; font-size: 1rem; font-weight: 600;
+            text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+        }
+        .btn-primary { background-color: #fff; color: #000; }
+        .btn-primary:hover { background-color: #e4e4e7; transform: translateY(-2px); }
+        .btn-secondary { background-color: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+
+        /* Sections */
+        .section-title {
+            font-size: 2rem; margin-bottom: 2rem; color: #fff;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section-title i { color: var(--accent-blue); }
+
+        /* Skills */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4rem; }
+        .skill-tag {
+            background-color: var(--bg-card); color: var(--text-primary);
+            border: 1px solid var(--border-color); padding: 10px 20px;
+            border-radius: 8px; font-size: 0.95rem; font-weight: 500;
         }
 
-        .btn-primary {
-            background-color: #fff;
-            color: #000;
-            border: none;
+        /* Project / Experience Card */
+        .card {
+            background-color: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
+        }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .card-title h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: #fff; }
+        .card-subtitle { color: var(--accent-blue); font-size: 0.95rem; font-weight: 500; }
+        .card-date { color: var(--text-secondary); font-size: 0.9rem; }
+        .card ul { padding-left: 20px; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .card li { margin-bottom: 0.5rem; }
+
+        /* Project Showcase Images */
+        .project-showcase {
+            display: flex; gap: 1.5rem; align-items: flex-end; margin-top: 2rem;
+            background-color: #09090b; padding: 1.5rem; border-radius: 12px; border: 1px solid #27272a;
+        }
+        .img-desktop {
+            width: 75%; border-radius: 8px; border: 1px solid #3f3f46;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: transform 0.3s;
+        }
+        .img-mobile {
+            width: 20%; border-radius: 12px; border: 2px solid #3f3f46;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: transform 0.3s;
+        }
+        .img-desktop:hover, .img-mobile:hover { transform: translateY(-5px); }
+
+        /* Tech Stack Tags */
+        .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tech-tag {
+            font-size: 0.8rem; padding: 4px 10px; background-color: rgba(255,255,255,0.05);
+            border-radius: 4px; color: #d4d4d8;
         }
 
-        .btn-primary:hover {
-            background-color: #e4e4e7;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* รองรับหน้าจอมือถือ */
         @media (max-width: 800px) {
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-                margin: 2rem auto;
-            }
-
-            .hero-image-wrapper {
-                flex: 0 0 auto;
-                width: 250px;
-                margin: 0 auto;
-            }
-
-            .hero-image {
-                height: 300px;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .edu-card {
-                margin: 0 auto 2rem;
-                text-align: left;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none; /* ซ่อนเมนูบนมือถือชั่วคราวให้ดูคลีน */
-            }
+            .hero-container { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero-image-wrapper { width: 250px; margin: 0 auto; }
+            h1 { font-size: 2.8rem; }
+            .btn-group { justify-content: center; }
+            .project-showcase { flex-direction: column; align-items: center; }
+            .img-desktop { width: 100%; }
+            .img-mobile { width: 40%; margin-top: -20px; z-index: 2; border: 4px solid #121214; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">
-            <div class="logo-dot"></div>
-            Supachai.S
-        </div>
-        <div class="nav-links">
-            <a href="#">About</a>
-            <a href="#">Skills</a>
-            <a href="#">Experience</a>
-            <a href="#">Contact</a>
-        </div>
+        <div class="logo"><div class="logo-dot"></div> Supachai.S</div>
     </nav>
 
-    <div class="hero-container">
-        <div class="hero-image-wrapper">
-            <img src="https://github.com/suphachaiSUP.png" alt="Supachai Supaka" class="hero-image">
-        </div>
-
-        <div class="hero-content">
-            <div class="badge">Full-Stack Developer</div>
-            
-            <h1>Hi, I'm <span class="highlight-text">Supachai</span></h1>
-            
-            <p class="bio">
-                An aspiring Full-stack Developer and final-year Computer Science student with proven experience developing web applications and APIs. With strong problem-solving skills, I am eager to take on real-world challenges.
-            </p>
-
-            <div class="edu-card">
-                <div class="edu-icon">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div class="edu-info">
-                    <h4>Kasetsart University (CSC)</h4>
-                    <p>B.S. Computer Science (Graduating Mar 2026)</p>
+    <div class="container">
+        <div class="hero-container">
+            <div class="hero-image-wrapper">
+                <img src="profile.jpg" alt="Supachai Supaka" class="hero-image" onerror="this.src='https://github.com/suphachaiSUP.png'">
+            </div>
+            <div class="hero-content">
+                <div class="badge">Full-Stack Developer</div>
+                <h1>Hi, I'm <span class="highlight-text">Supachai</span></h1>
+                <p class="bio">
+                    An aspiring Full-stack Developer and final-year Computer Science student at Kasetsart University. Passionate about developing scalable web applications, APIs, and real-world solutions.
+                </p>
+                <div class="btn-group">
+                    <a href="mailto:king.supaka@gmail.com" class="btn btn-primary">Get in touch</a>
+                    <a href="https://github.com/suphachaiSUP" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="resume.pdf" target="_blank" class="btn btn-secondary" title="Download Resume"><i class="fa-solid fa-file-pdf"></i> Resume</a>
                 </div>
             </div>
+        </div>
 
-            <div class="btn-group">
-                <a href="mailto:king.supaka@gmail.com" class="btn btn-primary">
-                    Get in touch
-                </a>
-                <a href="https://github.com/suphachaiSUP" target="_blank" class="btn btn-secondary">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="resume.pdf" target="_blank" class="btn btn-secondary" style="padding: 12px 16px;" title="Download Resume">
-                    <i class="fa-solid fa-file-pdf"></i>
-                </a>
+        <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Arsenal</h2>
+        <div class="skills-grid">
+            <span class="skill-tag">JavaScript / TypeScript</span>
+            <span class="skill-tag">PHP (Laravel)</span>
+            <span class="skill-tag">Next.js / React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">MySQL / PostgreSQL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">Git / GitHub</span>
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Featured Work</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3>EV Charging Station Location Info</h3>
+                    <div class="card-subtitle">Full-stack Developer (Undergraduate Thesis)</div>
+                </div>
+            </div>
+            <ul>
+                <li>Developed a full-stack EV charging station platform with role-based access control.</li>
+                <li>Integrated Google Maps API for real-time location tracking and responsive search filtering.</li>
+                <li>Designed relational database schemas and built robust RESTful APIs.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Google Maps API</span>
+                <span class="tech-tag">Bootstrap/Tailwind</span>
+            </div>
+            
+            <div class="project-showcase">
+                <img src="ev-de.jpg" alt="EV Desktop View" class="img-desktop" title="Desktop Version">
+                <img src="ev-mo.jpg" alt="EV Mobile View" class="img-mobile" title="Mobile Version">
             </div>
         </div>
-    </div>
-    <main>
-            <section id="about">
-                <h3><i class="fa-solid fa-user-astronaut"></i> About Me</h3>
-                <p style="color: var(--text-muted);">An aspiring Full-stack Developer and final-year Computer Science student with proven experience developing web applications and APIs. With strong problem-solving skills and a collaborative mindset, I am eager to take on real-world challenges and contribute to impactful projects.</p>
-            </section>
 
-            <section id="skills">
-                <h3><i class="fa-solid fa-layer-group"></i> Technical Skills</h3>
-                
-                <div class="skills-container">
-                    <div class="skills-category">Languages & Frameworks</div>
-                    <div class="skills-grid">
-                        <span class="skill-tag">JavaScript / TypeScript</span>
-                        <span class="skill-tag">PHP (Laravel)</span>
-                        <span class="skill-tag">React / Next.js</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">HTML5 / CSS3</span>
-                    </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3>Thai Cart - Embedded Checkout SaaS</h3>
+                    <div class="card-subtitle">Full-stack Developer</div>
                 </div>
+                <div class="card-date">Jun 2025 - Oct 2025</div>
+            </div>
+            <ul>
+                <li>Developed an embedded checkout platform using Next.js and TypeScript.</li>
+                <li>Created a merchant dashboard and JavaScript widget for external website integration.</li>
+                <li>Designed scalable system architecture and built REST APIs for order workflows.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">Prisma</span>
+            </div>
+        </div>
 
-                <div class="skills-container" style="margin-bottom: 0;">
-                    <div class="skills-category">Tools & Technologies</div>
-                    <div class="skills-grid">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">Git / GitHub</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Swagger</span>
-                        <span class="skill-tag">DBeaver</span>
-                        <span class="skill-tag">Vercel</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Plesk</span>
-                    </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3>Software Dev Intern (Backend)</h3>
+                    <div class="card-subtitle">BANGKOK SOLUTION CO.,LTD.</div>
                 </div>
-            </section>
+                <div class="card-date">Nov 2025 - Present</div>
+            </div>
+            <ul>
+                <li>Developed backend APIs for Hotel Contract Management System and MBA Platform.</li>
+                <li>Implemented media upload, Excel file processing, and many-to-many database relationships.</li>
+                <li>Optimized database queries and pagination for improved system performance.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">PHP (Laravel)</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Scramble / Swagger</span>
+            </div>
+        </div>
 
-            <section id="experience">
-                <h3><i class="fa-solid fa-briefcase"></i> Experience & Projects</h3>
-                
-                <div class="job">
-                    <div class="job-title">Software Dev Intern (Backend Developer)</div>
-                    <div class="job-meta"><i class="fa-solid fa-building"></i> BANGKOK SOLUTION CO.,LTD. &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> Nov 2025 - Present</div>
-                    <ul>
-                        <li>Developed backend for Hotel Contract Management System and MBA Platform using PHP (Laravel) and MySQL.</li>
-                        <li>Built RESTful APIs, implemented media/Excel file uploads, and optimized database queries.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-title">Full-stack Developer - Thai Cart (SaaS)</div>
-                    <div class="job-meta"><i class="fa-solid fa-globe"></i> Embedded Checkout Platform &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> Jun 2025 - Oct 2025</div>
-                    <ul>
-                        <li>Developed an embedded checkout platform using Next.js, TypeScript, and Supabase.</li>
-                        <li>Designed system architecture for a scalable SaaS product and built REST APIs for order workflows.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-title">Full-stack Developer - EV Charging Station Info</div>
-                    <div class="job-meta"><i class="fa-solid fa-graduation-cap"></i> Undergraduate Thesis</div>
-                    <ul>
-                        <li>Developed a full-stack website using Laravel & MySQL with role-based access control.</li>
-                        <li>Integrated Google Maps API and deployed using Git/GitHub.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="education">
-                <h3><i class="fa-solid fa-book-open"></i> Education</h3>
-                <div class="job">
-                    <div class="job-title">Bachelor of Science in Computer Science</div>
-                    <div class="job-meta"><i class="fa-solid fa-school"></i> Kasetsart University (CSC) &nbsp;|&nbsp; <i class="fa-regular fa-calendar"></i> Jun 2022 - Mar 2026</div>
-                    <p style="color: var(--text-muted); margin-top: 0; font-weight: 600;">GPAX: <span style="color: #fff;">3.49</span></p>
-                </div>
-            </section>
-        </main>
     </div>
 
 </body>
