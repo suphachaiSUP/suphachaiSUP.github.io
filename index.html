@@ -340,6 +340,69 @@
                 bottom: 10px;
             }
         }
+        /* Layout สำหรับ Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: #fff;
+            border-color: var(--ice-blue);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f9ff;
+            color: var(--ice-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-mute);
+            transition: 0.2s;
+        }
+
+        .skill-card:hover .tag {
+            border-color: #bae6fd;
+            color: var(--text-main);
+        }
     </style>
 </head>
 <body>
@@ -361,7 +424,7 @@
                 <img src="images/Profile.png" alt="Supachai Supaka" class="hero-image" onerror="this.src='https://github.com/suphachaiSUP.png'">
             </div>
             <div class="hero-content">
-                <div class="badge">Available for Work</div>
+                <div class="badge">พร้อมสำหรับงานประจำ</div>
                 <h1>Hi, I'm <span class="highlight-text">Supachai</span></h1>
                 <p class="bio">
                     นักศึกษาวิทยาการคอมพิวเตอร์ชั้นปีสุดท้าย และผู้ที่มุ่งมั่นพัฒนาเส้นทางอาชีพในสาย Full-stack Development มีประสบการณ์ในการพัฒนา Web Application และ API จากทั้งโปรเจกต์การเรียนและการฝึกงาน โดยมีความเข้าใจในกระบวนการพัฒนาซอฟต์แวร์ตั้งแต่การออกแบบโครงสร้างระบบ ฐานข้อมูล ไปจนถึงการพัฒนาและปรับปรุงฟังก์ชันการทำงานให้ตอบโจทย์การใช้งานจริง เป็นผู้เรียนรู้เร็ว มีทักษะการคิดวิเคราะห์และการแก้ปัญหา สามารถทำงานร่วมกับทีมได้อย่างมีประสิทธิภาพในสภาพแวดล้อมการพัฒนาซอฟต์แวร์แบบร่วมมือ พร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ ๆ อยู่เสมอ มีความตั้งใจที่จะนำความรู้และทักษะด้านเทคนิคไปประยุกต์ใช้กับความท้าทายในโลกการทำงานจริง เพื่อช่วยพัฒนาระบบที่มีคุณภาพ เสถียร และสร้างคุณค่าให้กับผู้ใช้งานและองค์กรในระยะยาว
@@ -401,31 +464,55 @@
             </div>
         </section>
 
-        <section id="skills">
-            <h2 class="section-title"><i class="fa-solid fa-snowflake"></i> ทักษะความสามารถ</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">JavaScript / TypeScript</span>
-                <span class="skill-tag">PHP (Laravel)</span>
-                <span class="skill-tag">Next.js / React</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">MySQL / PostgreSQL</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Supabase</span>
-                <span class="skill-tag">Git / GitHub</span>
-            </div>
-        </section>
+        <section id="skills" class="reveal">
+            <h2 style="margin-bottom: 2.5rem; font-weight: 800; display: flex; align-items: center; gap: 15px;">
+                <span style="color: var(--ice-blue); font-size: 1.5rem;">❄️</span> Technical Skills & Tools
+            </h2>
 
-        <section id="tools">
-            <h2 class="section-title"><i class="fa-solid fa-snowflake"></i> ทักษะความสามารถ</h2>
             <div class="skills-grid">
-                <span class="skill-tag">JavaScript / TypeScript</span>
-                <span class="skill-tag">PHP (Laravel)</span>
-                <span class="skill-tag">Next.js / React</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">MySQL / PostgreSQL</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Supabase</span>
-                <span class="skill-tag">Git / GitHub</span>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Languages</h3>
+                    <div class="tag-container">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Frameworks</h3>
+                    <div class="tag-container">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Next.js</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>Backend & DB</h3>
+                    <div class="tag-container">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Supabase</span>
+                        <span class="tag">RESTful API</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <h3>DevOps & Tools</h3>
+                    <div class="tag-container">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Git / GitHub</span>
+                        <span class="tag">Postman</span>
+                        <span class="tag">Vercel</span>
+                    </div>
+                </div>
             </div>
         </section>
 
