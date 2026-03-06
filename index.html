@@ -403,6 +403,39 @@
             border-color: #bae6fd;
             color: var(--text-main);
         }
+
+        /* Timeline Education */
+        .timeline { border-left: 2px solid var(--accent-ice); padding-left: 2rem; position: relative; }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: calc(-2rem - 9px); top: 5px;
+            width: 16px; height: 16px; background: var(--accent-blue); border: 4px solid #fff; border-radius: 50%;
+        }
+
+        .edu-year { color: var(--accent-blue); font-weight: 800; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
+
+        /* สำหรับหน้าจอ Desktop กว้างๆ (เรียง 4 กล่อง) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* บังคับให้แบ่งเป็น 4 คอลัมน์เท่าๆ กัน */
+            gap: 24px; /* ระยะห่างระหว่างกล่อง (ปรับเพิ่ม/ลดได้ตามชอบ) */
+            width: 100%;
+        }
+
+        /* สำหรับหน้าจอ Tablet เช่น iPad (ปรับเหลือ 2 กล่อง 2 แถว จะได้ไม่เบียดกันเกินไป) */
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        /* สำหรับหน้าจอมือถือ (ปรับเหลือ 1 กล่องเรียงลงมาตรงๆ เพื่อให้อ่านง่าย) */
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -438,28 +471,17 @@
         </section>
 
         <section id="education" class="reveal">
-            <h2 style="margin-bottom: 2rem; font-weight: 800;">
-                <i class="fa-solid fa-graduation-cap" style="color: var(--ice-blue); margin-right: 10px;"></i> ประวัติการศึกษา
-            </h2>
-            <div class="card" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</h3>
-                    <p style="color: var(--text-mute); font-weight: 600;">คณะวิทยาศาสตร์และวิศวกรรมศาสตร์</p>
-                    <p style="color: var(--text-mute); font-weight: 600;">สาขาวิทยาการคอมพิวเตอร์</p>
+            <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem;">ประวัติการศึกษา</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="edu-year">2565 - ปัจจุบัน</span>
+                    <h3 style="font-weight: 700;">มหาวิทยาลัยเกษตรศาสตร์</h3>
+                    <p style="color: var(--text-secondary);">คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ สาขาวิทยาการคอมพิวเตอร์</p>
                 </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 2rem; font-weight: 800; color: var(--ice-blue);"></div>
-                    <p style="font-size: 0.85rem; color: var(--text-mute);">มิถุนายน 2565 - มีนาคม 2568</p>
-                </div>
-            </div>
-            <div class="card" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">โรงเรียนนครพนมวิทยาคม</h3>
-                    <p style="color: var(--text-mute); font-weight: 600;">สายการเรียน วิทยาการคอมพิวเตอร์</p>
-                </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 2rem; font-weight: 800; color: var(--ice-blue);"></div>
-                    <p style="font-size: 0.85rem; color: var(--text-mute);">พฤษภาคม 2562 – เมษายน 2565</p>
+                <div class="timeline-item">
+                    <span class="edu-year">2562 - 2565</span>
+                    <h3 style="font-weight: 700;">โรงเรียนนครพนมวิทยาคม</h3>
+                    <p style="color: var(--text-secondary);">สายการเรียน วิทยาการคอมพิวเตอร์</p>
                 </div>
             </div>
         </section>
@@ -471,46 +493,48 @@
 
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>Languages</h3>
+                    <div class="skill-icon"><i class="fa-solid fa-desktop"></i></div>
+                    <h3>Frontend Development</h3>
                     <div class="tag-container">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">PHP</span>
-                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">React / Next.js</span>
+                        <span class="tag">Angular</span>
+                        <span class="tag">JavaScript / TypeScript</span>
+                        <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
-                    <h3>Frameworks</h3>
+                    <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+                    <h3>Backend Development</h3>
                     <div class="tag-container">
-                        <span class="tag">Laravel</span>
-                        <span class="tag">Next.js</span>
-                        <span class="tag">React</span>
+                        <span class="tag">PHP / Laravel</span>
                         <span class="tag">Node.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Swagger / Scramble</span>
                     </div>
                 </div>
 
                 <div class="skill-card">
                     <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
-                    <h3>Backend & DB</h3>
+                    <h3>Database & Data Management</h3>
                     <div class="tag-container">
-                        <span class="tag">MySQL</span>
-                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">SQL</span>
                         <span class="tag">Supabase</span>
-                        <span class="tag">RESTful API</span>
+                        <span class="tag">DBeaver</span>
                     </div>
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                    <h3>DevOps & Tools</h3>
+                    <div class="skill-icon"><i class="fa-solid fa-toolbox"></i></div>
+                    <h3>Development Tools & Environment</h3>
                     <div class="tag-container">
-                        <span class="tag">Docker</span>
                         <span class="tag">Git / GitHub</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Vercel / Plesk</span>
                         <span class="tag">Postman</span>
-                        <span class="tag">Vercel</span>
+                        <span class="tag">Figma / Draw.io</span>
+                        <span class="tag">ClickUp / Trello</span>
+                        <span class="tag">XAMPP / FileZilla</span>
                     </div>
                 </div>
             </div>
